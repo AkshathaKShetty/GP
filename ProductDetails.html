@@ -1,0 +1,25 @@
+<div ng-app="myProducts" ng-controller="ProductDetailsController">
+    <div class="panel panel-default">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Online Digital Store</h4>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="Products">
+                <div class="col-md-12" ng-repeat="(key, value) in productdata">
+                    <div  ng-if="key == 'image' ">
+                        <p>
+                            <img ng-src="{{value}}" />
+                        </p>                        
+                    </div>
+                    <div ng-if="key != 'image'"><b>{{key}}</b>: {{value}}</div>
+                </div>
+            </div>                      
+        </div>
+        <div class="panel-footer">
+            <a ui-sref="Home">Back to Products Page</a>
+        </div>
+        </div>
+    </div>
+

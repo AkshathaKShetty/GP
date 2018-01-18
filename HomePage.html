@@ -1,0 +1,61 @@
+﻿<div ng-app="myHome" ng-controller="HomePageCtrl">
+    <div class="panel panel-default">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4>Online Digital Store</h4>                
+            </div>
+        </div>
+        <div class="panel-body">            
+                <div class="row">
+                    <div id="sidenav" class="col-md-2">                           
+                        <p id="Search">Search : <input type="text" placeholder="Search Model Name" ng-model="searchText" /></p>                        
+                        <p><b>Brand</b></p>
+                        <div ng-repeat="items in products | unique:'brand'">                            
+                            <div><input type="checkbox" ng-model="mbrand={{items.brand}}"/>{{items.brand}}</div>
+                        </div><p></p>
+                        <p><b>Cost</b></p>
+                        <div ng-repeat="items in products | unique:'cost'">                            
+                            <div><input type="checkbox" ng-model="mcost"/>{{items.cost}}</div>
+                        </div><p></p>
+                        <p><b>Color</b></p>
+                        <div ng-repeat="items in products | unique:'color'">                            
+                            <div><input type="checkbox" ng-model="mcolor"/>{{items.color}}</div>
+                        </div><p></p>
+                        <p><b>Screen Size</b></p>
+                        <div ng-repeat="items in products | unique:'screensize'">                            
+                            <div><input type="checkbox" ng-model="mscreensize"/>{{items.screensize}}</div>
+                        </div>
+                    </div>                    
+                    <div id="Sort">
+                        <p>
+                            <select ng-model="sortColumn">
+                                <option value="" selected disabled>Sort By</option>
+                                <option value="name">Name</option>
+                                <option value="+cost">Price Low to High</option>
+                                <option value="-cost">Price High to Low</option>
+                                <option value="+capacity">Capacity High to Low</option>
+                                <option value="-capacity">Capacity Low to High</option>
+                            </select>
+                        </p>
+                    </div>  
+                    <div id="itemname">
+                        <p>Mobile Phones: <span>{{count}}</span></p>
+                    </div>
+                    <!--<div id="Products" class="col-md-5" ng-repeat="item in products| filter: search|filter:display|orderBy:sortColumn">-->
+                    <div id="Products" class="col-md-5" ng-repeat="item in products | display:{brand:mbrand,cost:mcost,color:mcolor,screensize:mscreensize}">
+                        <div>
+                            <p>
+                                <a ui-sref="ProductDetails({id:item.id})">
+                                    <img ng-src="{{item.image}}" />
+                                </a>
+                            </p>
+                            <p><span></span>Name: {{item.name}}</p>
+                            <p><span></span>Price: {{item.cost|currency:"INR "}}</p><p><span></span>Capacity: {{item.capacity}}</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <div class="panel-footer">Copyright © 2016 Your Company</div>
+    </div>
+   
+
